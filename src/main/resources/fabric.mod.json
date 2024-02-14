@@ -3,39 +3,32 @@
 	"id": "doabarrelrollwithhud",
 	"version": "${version}",
 	"name": "Do a barrel roll with HUD",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Show an accurate flight Hud when using mod [Do a barrel roll].",
 	"authors": [
-		"Me!"
+		"OutsiderH"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/OutsiderH/Do-a-barrel-roll-with-HUD"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/doabarrelrollwithhud/icon.png",
 	"environment": "*",
 	"entrypoints": {
-		"main": [
-			"outsider.doabarrelrollwithhud.DoABarrelRollWithHUD"
-		],
 		"client": [
-			"outsider.doabarrelrollwithhud.DoABarrelRollWithHUDClient"
+			"com.github.outsider.doabarrelrollwithhud.DoABarrelRollWithHudClient"
 		]
 	},
 	"mixins": [
-		"doabarrelrollwithhud.mixins.json",
-		{
-			"config": "doabarrelrollwithhud.client.mixins.json",
-			"environment": "client"
-		}
+
 	],
 	"depends": {
 		"fabricloader": ">=0.15.6",
 		"minecraft": "~1.19.2",
 		"java": ">=17",
-		"fabric-api": "*"
+		"fabric-api": "*",
+		"do_a_barrel_roll": ">=2.6.2"
 	},
 	"suggests": {
-		"another-mod": "*"
+		
 	}
 }
