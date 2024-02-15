@@ -1,7 +1,13 @@
 package com.github.outsiderh.doabarrelrollwithhud.renderer;
 
 public enum TextAlign {
+    UpLeft,
+    Up,
+    UpRight,
     Left,
-    Middle,
-    Right
+    Central,
+    Right,
+    DownLeft,
+    Down,
+    DownRight
 }

@@ -26,6 +26,7 @@ public abstract class InGameHudMixin {
             return;
         }
         DoABarrelRollWithHud.fc.eval(client.player);
+        Renderer.updateSize(client);
         for (final Renderer item : DoABarrelRollWithHud.renderers) {
             item.render(client, matrices);
         }

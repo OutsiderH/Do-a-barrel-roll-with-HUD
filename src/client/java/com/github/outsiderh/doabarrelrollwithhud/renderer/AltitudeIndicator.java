@@ -6,11 +6,11 @@ import com.github.outsiderh.doabarrelrollwithhud.utils.Vector2Int;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.math.MatrixStack;
 
-public class SpeedIndicator extends Renderer {
+public class AltitudeIndicator extends Renderer {
     @Override
     public void render(MinecraftClient client, MatrixStack mat) {
-        Vector2Int airSpeedPos = new Vector2Int(hudBegin.x, (hudBegin.y + hudEnd.y) / 2);
-        drawTextWithFixedBox(client.textRenderer, mat, String.format("%.1f", DoABarrelRollWithHud.fc.airSpeedInUnit()), color, airSpeedPos, TextAlign.Right, "xxx.x");
-        drawVerticalLine(mat, hudBegin.x, hudBegin.y, hudEnd.y, color);
+        Vector2Int altitudePos = new Vector2Int(hudEnd.x, (hudBegin.y + hudEnd.y) / 2);
+        drawTextWithFixedBox(client.textRenderer, mat, String.format("%.1f", DoABarrelRollWithHud.fc.altitudeInUnit()), color, altitudePos, TextAlign.Left, "xxxx.x");
+        drawVerticalLine(mat, hudEnd.x, hudBegin.y, hudEnd.y, color);
     }
 }
