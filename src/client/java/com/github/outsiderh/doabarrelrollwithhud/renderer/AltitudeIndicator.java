@@ -10,7 +10,10 @@ public class AltitudeIndicator extends Renderer {
     @Override
     public void render(MinecraftClient client, MatrixStack mat) {
         Vector2Int altitudePos = new Vector2Int(hudEnd.x, (hudBegin.y + hudEnd.y) / 2);
-        drawTextWithFixedBox(client.textRenderer, mat, String.format("%.1f", DoABarrelRollWithHud.fc.altitudeInUnit()), color, altitudePos, TextAlign.Left, "xxxx.x");
         drawVerticalLine(mat, hudEnd.x, hudBegin.y, hudEnd.y, color);
+        drawTextWithFixedBox(client.textRenderer, mat, String.format("%.1f", DoABarrelRollWithHud.fc.altitudeInUnit()), color, altitudePos, TextAlign.Left, "xxxx.x");
+        if (DoABarrelRollWithHud.fc.radarEnable) {
+            drawText(client.textRenderer, mat, String.format("%d", DoABarrelRollWithHud.fc.radarAltitude), color, new Vector2Int(hudEnd.x, hudEnd.y + 3), TextAlign.Up);
+        }
     }
 }

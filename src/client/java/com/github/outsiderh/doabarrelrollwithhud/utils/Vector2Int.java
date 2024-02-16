@@ -11,4 +11,8 @@ public class Vector2Int {
         this.x = x;
         this.y = y;
     }
+    public void add(int val) {
+        x += val;
+        y += val;
+    }
 }

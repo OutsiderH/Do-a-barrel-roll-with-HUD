@@ -17,6 +17,9 @@ public abstract class Renderer extends DrawableHelper {
         hudEnd.x = hudBegin.x * 3;
         hudEnd.y = hudBegin.y * 3;
     }
+    protected int boxedHeight(TextRenderer tr) {
+        return tr.fontHeight + 2;
+    }
     protected void drawText(TextRenderer tr, MatrixStack mat, String text, int color, Vector2Int pos, TextAlign align) {
         switch (align) {
             case UpLeft: {
@@ -73,9 +76,8 @@ public abstract class Renderer extends DrawableHelper {
                 begin.y = pos.y;
                 end.x = begin.x + tr.getWidth(size);
                 end.y = begin.y + tr.fontHeight;
-                pos.x += 2;
-                end.x += 2;
-                begin.y -= 2;
+                pos.add(2);
+                end.add(2);
                 break;
             }
             case Up: {
@@ -84,8 +86,11 @@ public abstract class Renderer extends DrawableHelper {
                 begin.y = pos.y;
                 end.x = begin.x + width;
                 end.y = begin.y + tr.fontHeight;
-                begin.x -= 2;
-                begin.y -= 2;
+                pos.x += 1;
+                pos.y += 2;
+                begin.x -= 1;
+                end.x += 1;
+                end.y += 2;
                 break;
             }  
             case UpRight: {
@@ -93,8 +98,9 @@ public abstract class Renderer extends DrawableHelper {
                 begin.y = pos.y;
                 end.x = pos.x;
                 end.y = begin.y + tr.fontHeight;
+                pos.y += 2;
                 begin.x -= 2;
-                begin.y -= 2;
+                end.y -= 2;
                 break;
             }
             case Left: {
@@ -103,8 +109,10 @@ public abstract class Renderer extends DrawableHelper {
                 end.x = begin.x + tr.getWidth(size);
                 end.y = begin.y + tr.fontHeight;
                 pos.x += 2;
+                pos.y += 1;
+                begin.y -= 1;
                 end.x += 2;
-                begin.y -= 2;
+                end.y +=1;
                 break;
             }
             case Central: {
@@ -113,8 +121,9 @@ public abstract class Renderer extends DrawableHelper {
                 begin.y = pos.y - tr.fontHeight / 2;
                 end.x = begin.x + width;
                 end.y = begin.y + tr.fontHeight;
-                begin.x -= 2;
-                begin.y -= 2;
+                pos.add(1);
+                begin.add(-1);
+                end.add(1);
                 break;
             }
             case Right: {
@@ -122,8 +131,10 @@ public abstract class Renderer extends DrawableHelper {
                 begin.y = pos.y - tr.fontHeight / 2;
                 end.x = pos.x;
                 end.y = begin.y + tr.fontHeight;
+                pos.y += 1;
                 begin.x -= 2;
-                begin.y -= 2;
+                begin.y -= 1;
+                end.y += 1;
                 break;
             }
             case DownLeft: {
@@ -132,8 +143,8 @@ public abstract class Renderer extends DrawableHelper {
                 end.x = begin.x + tr.getWidth(size);
                 end.y = pos.y;
                 pos.x += 2;
-                end.x += 2;
                 begin.y -= 2;
+                end.x += 2;
                 break;
             }
             case Down: {
@@ -142,8 +153,10 @@ public abstract class Renderer extends DrawableHelper {
                 begin.y = pos.y - tr.fontHeight;
                 end.x = begin.x + width;
                 end.y = pos.y;
-                begin.x -= 2;
+                pos.x += 1;
+                begin.x -= 1;
                 begin.y -= 2;
+                end.x += 1;
                 break;
             }
             case DownRight: {
@@ -151,8 +164,7 @@ public abstract class Renderer extends DrawableHelper {
                 begin.y = pos.y - tr.fontHeight;
                 end.x = pos.x;
                 end.y = pos.y;
-                begin.x -= 2;
-                begin.y -= 2;
+                begin.add(-2);
                 break;
             }
             default: {

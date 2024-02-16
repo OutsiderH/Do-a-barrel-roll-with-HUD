@@ -13,6 +13,9 @@ import com.github.outsiderh.doabarrelrollwithhud.utils.FlightComputer;
 import net.fabricmc.api.ClientModInitializer;
 
 public class DoABarrelRollWithHud implements ClientModInitializer {
+	/*  to do
+	 *  add ground speed indicator.
+	 */
 	public static final String modId = "doabarrelrollwithhud";
 	public static final Logger loggerSource = LoggerFactory.getLogger(modId);
 	public static final List<Renderer> renderers = List.of(new SpeedIndicator(), new AltitudeIndicator());
