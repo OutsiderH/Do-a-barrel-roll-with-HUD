@@ -2,6 +2,8 @@ package com.github.outsiderh.doabarrelrollwithhud.utils;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.math.Vec3d;
+import nl.enjarai.doabarrelroll.DoABarrelRollClient;
+import nl.enjarai.doabarrelroll.flight.ElytraMath;
 import net.minecraft.util.math.BlockPos.Mutable;
 
 public class FlightComputer {
@@ -10,6 +12,8 @@ public class FlightComputer {
     public float altitude; // diff with y63
     public int radarAltitude; // diff with ground
     public boolean radarEnable;
+    public float pitch;
+    public float roll;
     public float airSpeedInUnit() {
         return airSpeed / 1.7f * 100f;
     }
@@ -41,5 +45,7 @@ public class FlightComputer {
                 }
             }
         }
+        pitch = client.player.getPitch();
+        roll = (float)ElytraMath.getRoll(client.player.getYaw(), DoABarrelRollClient.left);
     }
 }

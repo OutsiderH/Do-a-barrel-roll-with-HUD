@@ -11,8 +11,29 @@ public class Vector2Int {
         this.x = x;
         this.y = y;
     }
+    public Vector2Int(Vector2Int val) {
+        x = val.x;
+        y = val.y;
+    }
     public void add(int val) {
         x += val;
         y += val;
+    }
+    public void div(int val) {
+        x /= val;
+        y /= val;
+    }
+    public Vector2Int subAndGet(Vector2Int val) {
+        x -= val.x;
+        y -= val.y;
+        return this;
+    }
+    public Vector2Int divAndGet(int val) {
+        x /= val;
+        y /= val;
+        return this;
+    }
+    public Vector2Int copy() {
+        return new Vector2Int(this);
     }
 }

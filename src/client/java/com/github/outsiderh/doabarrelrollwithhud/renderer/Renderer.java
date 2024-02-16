@@ -5,15 +5,21 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.util.math.Vec3f;
 
 public abstract class Renderer extends DrawableHelper {
     protected static final int color = 0xFF00FF00;
+    protected static final Vector2Int windowSize = new Vector2Int();
     protected static final Vector2Int hudBegin = new Vector2Int();
+    protected static final Vector2Int hudCenter = new Vector2Int();
     protected static final Vector2Int hudEnd = new Vector2Int();
     public static void updateSize(MinecraftClient client) {
-        Vector2Int windowSize = new Vector2Int(client.getWindow().getWidth(), client.getWindow().getHeight());
-        hudBegin.x = windowSize.x / 8;
-        hudBegin.y = windowSize.y / 8;
+        windowSize.x = client.getWindow().getScaledWidth();
+        windowSize.y = client.getWindow().getScaledHeight();
+        hudBegin.x = windowSize.x / 4;
+        hudBegin.y = windowSize.y / 4;
+        hudCenter.x = hudBegin.x * 2;
+        hudCenter.y = hudBegin.y * 2;
         hudEnd.x = hudBegin.x * 3;
         hudEnd.y = hudBegin.y * 3;
     }
@@ -176,6 +182,12 @@ public abstract class Renderer extends DrawableHelper {
         drawHorizontalLine(mat, begin.x, end.x, end.y, color);
         drawVerticalLine(mat, begin.x, begin.y, end.y, color);
         drawVerticalLine(mat, end.x, begin.y, end.y, color);
+    }
+    protected void rotate(MatrixStack mat, float angle) {
+        Vector2Int halfSize = windowSize.copy().divAndGet(2);
+        mat.translate(halfSize.x , halfSize.y, 0);
+        mat.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(angle));
+        mat.translate(-halfSize.x , -halfSize.y, 0);
     }
     public abstract void render(MinecraftClient client, MatrixStack mat);
 }
