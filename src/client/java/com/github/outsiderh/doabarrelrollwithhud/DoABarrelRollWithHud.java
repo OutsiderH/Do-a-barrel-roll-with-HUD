@@ -9,6 +9,7 @@ import com.github.outsiderh.doabarrelrollwithhud.renderer.AltitudeIndicator;
 import com.github.outsiderh.doabarrelrollwithhud.renderer.AttitudeIndicator;
 import com.github.outsiderh.doabarrelrollwithhud.renderer.Renderer;
 import com.github.outsiderh.doabarrelrollwithhud.renderer.SpeedIndicator;
+import com.github.outsiderh.doabarrelrollwithhud.renderer.YawIndicator;
 import com.github.outsiderh.doabarrelrollwithhud.utils.FlightComputer;
 
 import me.shedaniel.autoconfig.AutoConfig;
@@ -21,7 +22,12 @@ import net.fabricmc.api.Environment;
 public class DoABarrelRollWithHud implements ClientModInitializer {
 	public static final String modId = "doabarrelrollwithhud";
 	public static final Logger loggerSource = LoggerFactory.getLogger(modId);
-	public static final List<Renderer> renderers = List.of(new SpeedIndicator(), new AltitudeIndicator(), new AttitudeIndicator());
+	public static final List<Renderer> renderers = List.of(
+		new SpeedIndicator(),
+		new AltitudeIndicator(),
+		new AttitudeIndicator(),
+		new YawIndicator()
+	);
 	public static final FlightComputer fc = new FlightComputer();
 	public static ModConfig config;
 	@Override

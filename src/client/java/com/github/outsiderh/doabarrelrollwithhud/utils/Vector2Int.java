@@ -23,6 +23,16 @@ public class Vector2Int {
         x /= val;
         y /= val;
     }
+    public Vector2Int addAndGet(int val) {
+        x += val;
+        y += val;
+        return this;
+    }
+    public Vector2Int subAndGet(int val) {
+        x -= val;
+        y -= val;
+        return this;
+    }
     public Vector2Int subAndGet(Vector2Int val) {
         x -= val.x;
         y -= val.y;

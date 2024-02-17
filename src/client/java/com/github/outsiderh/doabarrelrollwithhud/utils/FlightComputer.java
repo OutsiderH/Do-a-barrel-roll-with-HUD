@@ -72,7 +72,7 @@ public class FlightComputer {
         altitude = (float)client.player.getPos().y;
         radarEnable = altitude <= 520;
         if (radarEnable) {
-            radarAltitude = 1;
+            radarAltitude = 0;
             Mutable curCheck = client.player.getBlockPos().mutableCopy();
             while (curCheck.getY() > -65 && client.world.isAir(curCheck)) {
                 curCheck.setY(curCheck.getY() - 1);

@@ -27,7 +27,7 @@ public abstract class Renderer extends DrawableHelper {
         return tr.fontHeight + 2;
     }
     protected void drawDot(MatrixStack mat, int color, Vector2Int pos) {
-        fill(mat, pos.x, pos.y, pos.x, pos.y, color);
+        fill(mat, pos.x, pos.y, pos.x + 1, pos.y + 1, color);
     }
     protected void drawText(TextRenderer tr, MatrixStack mat, String text, int color, Vector2Int pos, TextAlign align) {
         switch (align) {
