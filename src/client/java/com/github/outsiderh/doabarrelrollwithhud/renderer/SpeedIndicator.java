@@ -9,17 +9,18 @@ public class SpeedIndicator extends Renderer {
     @Override
     public void render(MinecraftClient client, MatrixStack mat) {
         drawVerticalLine(mat, hudBegin.x, hudBegin.y, hudEnd.y, color);
-        float airSpeed = fc.airSpeedInUnit();
+        float airSpeedPercentage = fc.airSpeedPercentage();
         int halfHeight = boxedHeight(client.textRenderer) / 2;
         int posLimitHigh = hudBegin.y + halfHeight;
         int posLimitLow = hudEnd.y - halfHeight;
         drawTextWithFixedBox(
             client.textRenderer,
-            mat, String.format("%.1f", airSpeed),
+            mat, String.format("%.1f", fc.airSpeedInUnit()),
             color,
-            new Vector2Int(hudBegin.x, airSpeed > 100f ? posLimitHigh : posLimitHigh + (int)((posLimitLow - posLimitHigh) * ((100f - airSpeed) / 100f))),
+            new Vector2Int(hudBegin.x, fc.airSpeedPercentage() > 1f ? posLimitHigh : posLimitHigh + (int)((posLimitLow - posLimitHigh) * ((1f - airSpeedPercentage) / 1f))),
             TextAlign.Right,
-            "xxx.x");
+            "xxx.x"
+        );
         drawText(client.textRenderer, mat, String.format("%.1f", fc.groundSpeedInUnit()), color, new Vector2Int(hudBegin.x, hudEnd.y + 3), TextAlign.Up);
     }
 }

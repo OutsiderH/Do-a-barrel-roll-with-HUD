@@ -1,5 +1,7 @@
 package com.github.outsiderh.doabarrelrollwithhud.utils;
 
+import org.apache.commons.lang3.NotImplementedException;
+import com.github.outsiderh.doabarrelrollwithhud.DoABarrelRollWithHud;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.math.Vec3d;
 import nl.enjarai.doabarrelroll.DoABarrelRollClient;
@@ -7,21 +9,57 @@ import nl.enjarai.doabarrelroll.flight.ElytraMath;
 import net.minecraft.util.math.BlockPos.Mutable;
 
 public class FlightComputer {
-    public float airSpeed; // m per tick
-    public float groundSpeed; // m per tick
-    public float altitude; // diff with y63
-    public int radarAltitude; // diff with ground
+    public float airSpeed;
+    public float groundSpeed;
+    public float altitude;
+    public int radarAltitude;
     public boolean radarEnable;
     public float pitch;
+    public float yaw;
     public float roll;
     public float airSpeedInUnit() {
-        return airSpeed / 1.7f * 100f;
+        switch (DoABarrelRollWithHud.config.speedUnit) {
+            case mPerT: {
+                return airSpeed;
+            }
+            case mPerS: {
+               return airSpeed * 20f;
+            }
+            case kmPerH: {
+                return airSpeed * 72f;
+            }
+            case kn: {
+                return airSpeed * 38.877f;
+            }
+            default: {
+                throw new NotImplementedException();
+            }
+        }
     }
     public float groundSpeedInUnit() {
-        return groundSpeed / 1.7f * 100f;
+        switch (DoABarrelRollWithHud.config.speedUnit) {
+            case mPerT: {
+                return groundSpeed;
+            }
+            case mPerS: {
+                return groundSpeed * 20f;
+            }
+            case kmPerH: {
+                return groundSpeed * 72f;
+            }
+            case kn: {
+                return groundSpeed * 38.877f;
+            }
+            default: {
+                throw new NotImplementedException();
+            }
+        }
     }
     public float altitudeInUnit() {
         return altitude - 63f;
+    }
+    public float airSpeedPercentage() {
+        return airSpeed / 1.7f;
     }
     public void eval(MinecraftClient client) {
         if (client.player.getVelocity().dotProduct(client.player.getRotationVector()) < 0d) {
@@ -46,6 +84,13 @@ public class FlightComputer {
             }
         }
         pitch = client.player.getPitch();
-        roll = (float)ElytraMath.getRoll(client.player.getYaw(), DoABarrelRollClient.left);
+        yaw = client.player.getYaw();
+        roll = (float)ElytraMath.getRoll(yaw, DoABarrelRollClient.left);
+    }
+    public enum SpeedUnit {
+        mPerT,
+        mPerS,
+        kmPerH,
+        kn
     }
 }

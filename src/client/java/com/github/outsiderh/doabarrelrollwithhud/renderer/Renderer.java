@@ -26,6 +26,9 @@ public abstract class Renderer extends DrawableHelper {
     protected int boxedHeight(TextRenderer tr) {
         return tr.fontHeight + 2;
     }
+    protected void drawDot(MatrixStack mat, int color, Vector2Int pos) {
+        fill(mat, pos.x, pos.y, pos.x, pos.y, color);
+    }
     protected void drawText(TextRenderer tr, MatrixStack mat, String text, int color, Vector2Int pos, TextAlign align) {
         switch (align) {
             case UpLeft: {

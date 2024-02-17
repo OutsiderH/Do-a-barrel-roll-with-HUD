@@ -33,5 +33,8 @@ public class AttitudeIndicator extends Renderer {
             drawText(client.textRenderer, mat, String.valueOf(numToShow), color, new Vector2Int(hudCenter.x + 75, p), TextAlign.Left);
         }
         mat.pop();
+        drawDot(mat, color, hudCenter);
+        drawHorizontalLine(mat, hudCenter.x - 1, hudCenter.x - 9, hudCenter.y, color);
+        drawHorizontalLine(mat, hudCenter.x + 1, hudCenter.x + 9, hudCenter.y, color);
     }
 }
